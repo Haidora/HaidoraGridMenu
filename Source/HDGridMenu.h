@@ -26,6 +26,8 @@
 @property (nonatomic, assign) BOOL canMuliteSelect;
 
 @property (nonatomic, strong) NSMutableArray *selectedIndexs;
+@property (nonatomic, strong) NSArray *items;
+
 - (id)initWithMenus:(NSArray *)menus;
 
 @end

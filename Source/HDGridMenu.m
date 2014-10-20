@@ -13,8 +13,6 @@
 
 @interface HDGridMenu ()
 
-@property (nonatomic, strong) NSArray *items;
-
 @end
 
 @implementation HDGridMenu
@@ -68,6 +66,21 @@
     _selectedIndexs = [NSMutableArray array];
     [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+}
+
+- (void)setItems:(NSArray *)items
+{
+    _items = items;
+    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [_items enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        HDGridMenuItem *item = obj;
+        item.tag = idx;
+        [item addTarget:self
+                      action:@selector(menuSelected:)
+            forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:obj];
+    }];
+    [self setNeedsLayout];
 }
 
 #pragma mark
