@@ -132,7 +132,7 @@
                 posX = _edgeInsets.left;
                 posY += _edgeInsets.top + itemHeight;
                 item.frame = CGRectMake(posX, posY, itemWidth, itemHeight);
-                posX += itemWidth + _itemMargin;
+                posX += itemWidth + MIN(_itemMargin, _edgeInsets.right);
             }
         }
         if ([_selectedIndexs containsObject:@(idx)])
